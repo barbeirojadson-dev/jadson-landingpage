@@ -294,4 +294,326 @@
 
     .gallery {
       display: grid;
-      grid-template-columns: repeat(4, 
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .gallery .photo-placeholder {
+      min-height: 300px;
+      aspect-ratio: 3 / 4;
+    }
+
+    .appointment {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 40px;
+      padding: clamp(28px, 6vw, 64px);
+      border: 1px solid var(--line);
+      background: var(--graphite);
+    }
+
+    .appointment h2 { margin: 10px 0 14px; }
+    .appointment p { max-width: 600px; margin-bottom: 0; }
+    .appointment-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 26px;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    footer {
+      padding: 30px 0 100px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .76rem;
+    }
+
+    .mobile-bar { display: none; }
+
+    @keyframes reveal {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 32px, var(--content)); }
+      .header-inner { min-height: 66px; }
+      .header-cta { min-height: 40px; font-size: .62rem; }
+      .hero {
+        min-height: 0;
+        grid-template-columns: 1fr;
+        gap: 34px;
+        padding-block: 74px 60px;
+      }
+      .hero h1 { max-width: 540px; }
+      .photo-placeholder { min-height: 360px; }
+      .course-grid, .about-grid { grid-template-columns: 1fr; }
+      .about-photo { min-height: 360px; }
+      .gallery { grid-template-columns: repeat(2, 1fr); gap: 9px; }
+      .gallery .photo-placeholder { min-height: 230px; }
+      .appointment { grid-template-columns: 1fr; gap: 24px; }
+      .mobile-bar {
+        position: fixed;
+        z-index: 20;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1px;
+        padding: 8px;
+        border-top: 1px solid var(--line);
+        background: #090909;
+      }
+      .mobile-bar .button { min-height: 46px; padding-inline: 8px; font-size: .62rem; }
+      footer { padding-bottom: 90px; }
+    }
+
+    @media (max-width: 420px) {
+      .hero-actions { display: grid; }
+      .hero-actions .button { width: 100%; }
+      .gallery .photo-placeholder { min-height: 190px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#inicio">
+        JADSON EVANGELISTA
+        <span>BARBER EDUCATOR</span>
+      </a>
+      <a class="button header-cta" data-whatsapp="booking" href="#">Agendar horário</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap hero" id="inicio">
+      <div class="hero-copy">
+        <div class="eyebrow">JADSON EVANGELISTA · BARBER EDUCATOR</div>
+        <h1>O que a cadeira me ensina, eu compartilho.</h1>
+        <p>Barbeiro na rotina, educador na prática. Agende seu horário ou acompanhe o curso que estou construindo.</p>
+        <div class="hero-actions">
+          <a class="button" href="#curso">Quero o curso</a>
+          <a class="button button--outline" data-whatsapp="booking" href="#">Agendar no WhatsApp</a>
+        </div>
+      </div>
+      <div class="photo-placeholder" data-photo="hero" aria-label="Espaço reservado para foto de destaque">
+        <span>Espaço reservado para foto de destaque</span>
+      </div>
+    </section>
+
+    <section class="section" id="curso">
+      <div class="wrap course-grid">
+        <div class="course-copy">
+          <span class="tag">PRÉ-LANÇAMENTO</span>
+          <h2>Conhecimento que transforma prática em evolução.</h2>
+          <p>Estou desenvolvendo conteúdos e experiências educacionais para barbeiros que desejam evoluir profissionalmente. Cadastre seu interesse e seja avisado primeiro.</p>
+          <div class="eyebrow">EM CONSTRUÇÃO</div>
+          <div class="course-list" id="course-list"></div>
+        </div>
+
+        <form class="form-card" id="interest-form">
+          <h3>Acompanhe de perto.</h3>
+          <p>Deixe seus dados. O WhatsApp abrirá com uma mensagem pronta para você enviar.</p>
+
+          <div class="field">
+            <label for="name">Seu nome</label>
+            <input id="name" name="name" autocomplete="name" required>
+          </div>
+
+          <div class="field">
+            <label for="phone">Seu WhatsApp</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" required>
+          </div>
+
+          <div class="field">
+            <label for="stage">Em que fase da carreira você está?</label>
+            <select id="stage" name="stage" required>
+              <option value="" selected disabled>Selecione uma opção</option>
+              <option>Estou começando</option>
+              <option>Já atendo clientes</option>
+              <option>Trabalho em uma barbearia</option>
+              <option>Tenho minha barbearia</option>
+            </select>
+          </div>
+
+          <button class="button" type="submit">Quero acompanhar os próximos lançamentos</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap about-grid">
+        <div class="photo-placeholder about-photo" data-photo="about" aria-label="Espaço reservado para foto de Jadson trabalhando">
+          <span>Espaço reservado para foto trabalhando</span>
+        </div>
+        <div class="about-copy">
+          <div class="eyebrow">QUEM ESTÁ POR TRÁS DO CURSO</div>
+          <h2>Aprendizado que vem da prática.</h2>
+          <p>Minha trajetória começou conciliando outra profissão com a barbearia. Vieram os primeiros clientes em casa, o investimento em formação e a entrada em uma barbearia profissional. Sigo aprendendo todos os dias, com a prática e com cada cliente.</p>
+          <div class="pillars">
+            <span>Formação</span>
+            <span>Prática diária</span>
+            <span>Clientes reais</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="trabalhos">
+      <div class="wrap">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">TRABALHOS</div>
+            <h2>Feito na prática.</h2>
+          </div>
+        </div>
+        <div class="gallery" id="gallery" aria-label="Galeria de trabalhos"></div>
+      </div>
+    </section>
+
+    <section class="section" id="agendamento">
+      <div class="wrap">
+        <div class="appointment">
+          <div>
+            <div class="eyebrow">AGENDAMENTO</div>
+            <h2>Seu próximo horário começa aqui.</h2>
+            <p>Atendimento com hora marcada. Chame no WhatsApp e escolha o melhor dia.</p>
+            <div class="details">
+              <span id="barbershop"></span>
+              <span id="address"></span>
+              <span id="hours"></span>
+            </div>
+          </div>
+          <div class="appointment-actions">
+            <a class="button" data-whatsapp="booking" href="#">Agendar no WhatsApp</a>
+            <a class="button button--outline" id="agenda-link" href="#" target="_blank" rel="noopener" hidden>Ver agenda online</a>
+            <a class="button button--outline" id="instagram-link" href="#" target="_blank" rel="noopener">Instagram</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">Jadson Evangelista · Barber Educator</div>
+  </footer>
+
+  <nav class="mobile-bar" aria-label="Ações rápidas">
+    <a class="button button--outline" data-whatsapp="booking" href="#">Agendar</a>
+    <a class="button" href="#curso">Quero o curso</a>
+  </nav>
+
+  <script>
+    // Edite aqui os dados e, quando tiver as imagens, cole os links nos campos de foto.
+    const CFG = {
+      whatsapp: "5517988255252",
+      instagram: "https://instagram.com/jadscuts",
+      agendaOnline: "",
+      barbearia: "",
+      endereco: "",
+      horarios: "",
+      curso: ["Aulas", "Workshops", "Mentorias", "Materiais digitais"],
+      heroPhoto: "",
+      aboutPhoto: "",
+      fotos: ["", "", "", "", "", "", "", ""]
+    };
+
+    const bookingMessage = "Olá, Jadson! Gostaria de agendar um horário.";
+    const whatsappUrl = (message) =>
+      `https://wa.me/${CFG.whatsapp}?text=${encodeURIComponent(message)}`;
+
+    document.querySelectorAll('[data-whatsapp="booking"]').forEach((link) => {
+      link.href = whatsappUrl(bookingMessage);
+      link.target = "_blank";
+      link.rel = "noopener";
+    });
+
+    document.getElementById("course-list").innerHTML =
+      CFG.curso.map((item) => `<span>${item}</span>`).join("");
+
+    function setPhoto(element, url) {
+      if (!url) return;
+      const image = document.createElement("img");
+      image.src = url;
+      image.alt = "";
+      image.loading = "lazy";
+      image.style.cssText = "width:100%;height:100%;min-height:inherit;object-fit:cover;grid-area:1/1;";
+      element.style.display = "grid";
+      element.style.overflow = "hidden";
+      element.appendChild(image);
+      const label = element.querySelector("span");
+      if (label) label.remove();
+    }
+
+    setPhoto(document.querySelector('[data-photo="hero"]'), CFG.heroPhoto);
+    setPhoto(document.querySelector('[data-photo="about"]'), CFG.aboutPhoto);
+
+    const gallery = document.getElementById("gallery");
+    CFG.fotos.slice(0, 8).forEach((url, index) => {
+      const tile = document.createElement("div");
+      tile.className = "photo-placeholder";
+      tile.setAttribute("aria-label", `Espaço reservado para trabalho ${index + 1}`);
+
+      if (url) {
+        const image = document.createElement("img");
+        image.src = url;
+        image.alt = `Trabalho de barbearia ${index + 1}`;
+        image.loading = "lazy";
+        image.style.cssText = "width:100%;height:100%;object-fit:cover;grid-area:1/1;";
+        tile.appendChild(image);
+      } else {
+        const label = document.createElement("span");
+        label.textContent = `Foto de trabalho ${String(index + 1).padStart(2, "0")}`;
+        tile.appendChild(label);
+      }
+      gallery.appendChild(tile);
+    });
+
+    document.getElementById("barbershop").textContent =
+      CFG.barbearia || "Nome da barbearia: a atualizar";
+    document.getElementById("address").textContent =
+      CFG.endereco || "Endereço: a atualizar";
+    document.getElementById("hours").textContent =
+      CFG.horarios || "Horários: a atualizar";
+
+    if (CFG.agendaOnline) {
+      const agendaLink = document.getElementById("agenda-link");
+      agendaLink.href = CFG.agendaOnline;
+      agendaLink.hidden = false;
+    }
+
+    document.getElementById("instagram-link").href = CFG.instagram;
+
+    document.getElementById("interest-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = new FormData(event.currentTarget);
+      const name = form.get("name").trim();
+      const phone = form.get("phone").trim();
+      const stage = form.get("stage");
+
+      const message =
+        `Olá, Jadson! Tenho interesse em acompanhar os próximos lançamentos do curso.\n\n` +
+        `Nome: ${name}\nWhatsApp: ${phone}\nFase da carreira: ${stage}`;
+
+      window.open(whatsappUrl(message), "_blank", "noopener");
+    });
+  </script>
+</body>
+</html>
