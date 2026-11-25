@@ -1,619 +1,152 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#050505">
-  <meta
-    name="description"
-    content="Jadson Evangelista, barbeiro e educador. Agende seu horário ou acompanhe o lançamento do curso."
-  >
-  <title>Jadson Evangelista | Barber Educator</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
-
-  <style>
-    :root {
-      color-scheme: dark;
-      --black: #050505;
-      --graphite: #121212;
-      --graphite-light: #1c1c1c;
-      --line: #2a2927;
-      --gold: #c2a878;
-      --gold-dark: #8f7a52;
-      --text: #ece8e1;
-      --muted: #9b958b;
-      --serif: "Cormorant Garamond", Georgia, serif;
-      --sans: "Manrope", Arial, sans-serif;
-      --content: 1120px;
-    }
-
-    * { box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 90px;
-    }
-
-    body {
-      margin: 0;
-      background: var(--black);
-      color: var(--text);
-      font-family: var(--sans);
-      line-height: 1.65;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    button, input, select { font: inherit; }
-
-    .wrap {
-      width: min(var(--content), calc(100% - 40px));
-      margin-inline: auto;
-    }
-
-    .eyebrow {
-      color: var(--gold);
-      font-size: .72rem;
-      font-weight: 700;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-    }
-
-    h1, h2, h3 {
-      margin: 0;
-      font-family: var(--serif);
-      font-weight: 500;
-      line-height: 1.05;
-    }
-
-    h1 { font-size: clamp(3.2rem, 8vw, 6.7rem); }
-    h2 { font-size: clamp(2.5rem, 5vw, 4.2rem); }
-    p { color: var(--muted); }
-
-    .button {
-      display: inline-flex;
-      min-height: 50px;
-      align-items: center;
-      justify-content: center;
-      padding: 0 22px;
-      border: 1px solid var(--gold-dark);
-      background: var(--gold);
-      color: #14120e;
-      font-size: .72rem;
-      font-weight: 800;
-      letter-spacing: .09em;
-      text-align: center;
-      text-transform: uppercase;
-      transition: background .2s ease, transform .2s ease;
-    }
-
-    .button:hover {
-      background: #d3bb8c;
-      transform: translateY(-2px);
-    }
-
-    .button--outline {
-      background: transparent;
-      color: var(--text);
-    }
-
-    .button--outline:hover {
-      background: var(--graphite-light);
-    }
-
-    .site-header {
-      position: sticky;
-      z-index: 10;
-      top: 0;
-      border-bottom: 1px solid rgb(42 41 39 / 75%);
-      background: rgb(5 5 5 / 92%);
-      backdrop-filter: blur(12px);
-    }
-
-    .header-inner {
-      display: flex;
-      min-height: 76px;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .brand {
-      font-size: .75rem;
-      font-weight: 700;
-      letter-spacing: .12em;
-    }
-
-    .brand span {
-      display: block;
-      margin-top: 2px;
-      color: var(--muted);
-      font-size: .62rem;
-      font-weight: 500;
-      letter-spacing: .16em;
-    }
-
-    .header-cta { min-height: 42px; padding-inline: 16px; }
-
-    .hero {
-      display: grid;
-      min-height: min(760px, calc(100svh - 76px));
-      grid-template-columns: 1.05fr .95fr;
-      align-items: center;
-      gap: clamp(38px, 8vw, 100px);
-      padding-block: 70px;
-      animation: reveal .8s ease both;
-    }
-
-    .hero-copy { max-width: 650px; }
-    .hero h1 { margin-top: 22px; }
-    .hero-copy > p {
-      max-width: 540px;
-      margin: 24px 0 30px;
-      font-size: 1rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .photo-placeholder {
-      display: grid;
-      min-height: 460px;
-      place-items: center;
-      border: 1px solid var(--line);
-      background:
-        radial-gradient(ellipse at 50% 35%, #20201e 0, transparent 55%),
-        linear-gradient(145deg, #171715, #0b0b0b 70%);
-      color: #777168;
-      text-align: center;
-    }
-
-    .photo-placeholder span {
-      padding: 20px;
-      font-size: .7rem;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-    }
-
-    .section {
-      padding-block: clamp(78px, 11vw, 132px);
-      border-top: 1px solid var(--line);
-    }
-
-    .course-grid {
-      display: grid;
-      grid-template-columns: 1fr .85fr;
-      align-items: start;
-      gap: clamp(40px, 8vw, 100px);
-    }
-
-    .tag {
-      display: inline-block;
-      margin-bottom: 22px;
-      padding: 6px 10px;
-      border: 1px solid var(--gold-dark);
-      color: var(--gold);
-      font-size: .66rem;
-      font-weight: 700;
-      letter-spacing: .15em;
-    }
-
-    .course-copy h2 { max-width: 650px; }
-    .course-copy > p { max-width: 590px; margin: 22px 0; }
-
-    .course-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      margin-top: 28px;
-    }
-
-    .course-list span {
-      padding: 8px 12px;
-      border: 1px solid var(--line);
-      color: var(--muted);
-      font-size: .75rem;
-    }
-
-    .form-card {
-      padding: clamp(22px, 4vw, 36px);
-      border: 1px solid var(--line);
-      background: var(--graphite);
-    }
-
-    .form-card h3 { margin-bottom: 8px; font-size: 2rem; }
-    .form-card > p { margin: 0 0 22px; font-size: .88rem; }
-
-    .field { margin-bottom: 15px; }
-
-    .field label {
-      display: block;
-      margin-bottom: 7px;
-      color: var(--text);
-      font-size: .75rem;
-      font-weight: 600;
-    }
-
-    .field input, .field select {
-      width: 100%;
-      min-height: 48px;
-      padding: 10px 12px;
-      border: 1px solid var(--line);
-      border-radius: 0;
-      outline: none;
-      background: #0b0b0b;
-      color: var(--text);
-    }
-
-    .field input:focus, .field select:focus { border-color: var(--gold-dark); }
-    .form-card .button { width: 100%; margin-top: 4px; }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: .8fr 1fr;
-      align-items: center;
-      gap: clamp(40px, 9vw, 110px);
-    }
-
-    .about-photo { min-height: 430px; }
-    .about-copy h2 { margin: 14px 0 20px; }
-    .about-copy p { max-width: 620px; }
-
-    .pillars {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 28px;
-    }
-
-    .pillars span {
-      padding: 9px 13px;
-      border-left: 1px solid var(--gold-dark);
-      background: var(--graphite);
-      color: var(--text);
-      font-size: .76rem;
-    }
-
-    .section-heading {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 20px;
-      margin-bottom: 30px;
-    }
-
-    .section-heading h2 { margin-top: 10px; }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
-
-    .gallery .photo-placeholder {
-      min-height: 300px;
-      aspect-ratio: 3 / 4;
-    }
-
-    .appointment {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 40px;
-      padding: clamp(28px, 6vw, 64px);
-      border: 1px solid var(--line);
-      background: var(--graphite);
-    }
-
-    .appointment h2 { margin: 10px 0 14px; }
-    .appointment p { max-width: 600px; margin-bottom: 0; }
-    .appointment-actions { display: flex; flex-wrap: wrap; gap: 10px; }
-
-    .details {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px 26px;
-      margin-top: 24px;
-      color: var(--muted);
-      font-size: .82rem;
-    }
-
-    footer {
-      padding: 30px 0 100px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: .76rem;
-    }
-
-    .mobile-bar { display: none; }
-
-    @keyframes reveal {
-      from { opacity: 0; transform: translateY(14px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 760px) {
-      .wrap { width: min(100% - 32px, var(--content)); }
-      .header-inner { min-height: 66px; }
-      .header-cta { min-height: 40px; font-size: .62rem; }
-      .hero {
-        min-height: 0;
-        grid-template-columns: 1fr;
-        gap: 34px;
-        padding-block: 74px 60px;
-      }
-      .hero h1 { max-width: 540px; }
-      .photo-placeholder { min-height: 360px; }
-      .course-grid, .about-grid { grid-template-columns: 1fr; }
-      .about-photo { min-height: 360px; }
-      .gallery { grid-template-columns: repeat(2, 1fr); gap: 9px; }
-      .gallery .photo-placeholder { min-height: 230px; }
-      .appointment { grid-template-columns: 1fr; gap: 24px; }
-      .mobile-bar {
-        position: fixed;
-        z-index: 20;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1px;
-        padding: 8px;
-        border-top: 1px solid var(--line);
-        background: #090909;
-      }
-      .mobile-bar .button { min-height: 46px; padding-inline: 8px; font-size: .62rem; }
-      footer { padding-bottom: 90px; }
-    }
-
-    @media (max-width: 420px) {
-      .hero-actions { display: grid; }
-      .hero-actions .button { width: 100%; }
-      .gallery .photo-placeholder { min-height: 190px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        scroll-behavior: auto !important;
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="brand" href="#inicio">
-        JADSON EVANGELISTA
-        <span>BARBER EDUCATOR</span>
-      </a>
-      <a class="button header-cta" data-whatsapp="booking" href="#">Agendar horário</a>
-    </div>
-  </header>
-
-  <main>
-    <section class="wrap hero" id="inicio">
-      <div class="hero-copy">
-        <div class="eyebrow">JADSON EVANGELISTA · BARBER EDUCATOR</div>
-        <h1>O que a cadeira me ensina, eu compartilho.</h1>
-        <p>Barbeiro na rotina, educador na prática. Agende seu horário ou acompanhe o curso que estou construindo.</p>
-        <div class="hero-actions">
-          <a class="button" href="#curso">Quero o curso</a>
-          <a class="button button--outline" data-whatsapp="booking" href="#">Agendar no WhatsApp</a>
-        </div>
-      </div>
-      <div class="photo-placeholder" data-photo="hero" aria-label="Espaço reservado para foto de destaque">
-        <span>Espaço reservado para foto de destaque</span>
-      </div>
-    </section>
-
-    <section class="section" id="curso">
-      <div class="wrap course-grid">
-        <div class="course-copy">
-          <span class="tag">PRÉ-LANÇAMENTO</span>
-          <h2>Conhecimento que transforma prática em evolução.</h2>
-          <p>Estou desenvolvendo conteúdos e experiências educacionais para barbeiros que desejam evoluir profissionalmente. Cadastre seu interesse e seja avisado primeiro.</p>
-          <div class="eyebrow">EM CONSTRUÇÃO</div>
-          <div class="course-list" id="course-list"></div>
-        </div>
-
-        <form class="form-card" id="interest-form">
-          <h3>Acompanhe de perto.</h3>
-          <p>Deixe seus dados. O WhatsApp abrirá com uma mensagem pronta para você enviar.</p>
-
-          <div class="field">
-            <label for="name">Seu nome</label>
-            <input id="name" name="name" autocomplete="name" required>
-          </div>
-
-          <div class="field">
-            <label for="phone">Seu WhatsApp</label>
-            <input id="phone" name="phone" type="tel" autocomplete="tel" required>
-          </div>
-
-          <div class="field">
-            <label for="stage">Em que fase da carreira você está?</label>
-            <select id="stage" name="stage" required>
-              <option value="" selected disabled>Selecione uma opção</option>
-              <option>Estou começando</option>
-              <option>Já atendo clientes</option>
-              <option>Trabalho em uma barbearia</option>
-              <option>Tenho minha barbearia</option>
-            </select>
-          </div>
-
-          <button class="button" type="submit">Quero acompanhar os próximos lançamentos</button>
-        </form>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap about-grid">
-        <div class="photo-placeholder about-photo" data-photo="about" aria-label="Espaço reservado para foto de Jadson trabalhando">
-          <span>Espaço reservado para foto trabalhando</span>
-        </div>
-        <div class="about-copy">
-          <div class="eyebrow">QUEM ESTÁ POR TRÁS DO CURSO</div>
-          <h2>Aprendizado que vem da prática.</h2>
-          <p>Minha trajetória começou conciliando outra profissão com a barbearia. Vieram os primeiros clientes em casa, o investimento em formação e a entrada em uma barbearia profissional. Sigo aprendendo todos os dias, com a prática e com cada cliente.</p>
-          <div class="pillars">
-            <span>Formação</span>
-            <span>Prática diária</span>
-            <span>Clientes reais</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="trabalhos">
-      <div class="wrap">
-        <div class="section-heading">
-          <div>
-            <div class="eyebrow">TRABALHOS</div>
-            <h2>Feito na prática.</h2>
-          </div>
-        </div>
-        <div class="gallery" id="gallery" aria-label="Galeria de trabalhos"></div>
-      </div>
-    </section>
-
-    <section class="section" id="agendamento">
-      <div class="wrap">
-        <div class="appointment">
-          <div>
-            <div class="eyebrow">AGENDAMENTO</div>
-            <h2>Seu próximo horário começa aqui.</h2>
-            <p>Atendimento com hora marcada. Chame no WhatsApp e escolha o melhor dia.</p>
-            <div class="details">
-              <span id="barbershop"></span>
-              <span id="address"></span>
-              <span id="hours"></span>
-            </div>
-          </div>
-          <div class="appointment-actions">
-            <a class="button" data-whatsapp="booking" href="#">Agendar no WhatsApp</a>
-            <a class="button button--outline" id="agenda-link" href="#" target="_blank" rel="noopener" hidden>Ver agenda online</a>
-            <a class="button button--outline" id="instagram-link" href="#" target="_blank" rel="noopener">Instagram</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap">Jadson Evangelista · Barber Educator</div>
-  </footer>
-
-  <nav class="mobile-bar" aria-label="Ações rápidas">
-    <a class="button button--outline" data-whatsapp="booking" href="#">Agendar</a>
-    <a class="button" href="#curso">Quero o curso</a>
-  </nav>
-
-  <script>
-    // Edite aqui os dados e, quando tiver as imagens, cole os links nos campos de foto.
-    const CFG = {
-      whatsapp: "5517988255252",
-      instagram: "https://instagram.com/jadscuts",
-      agendaOnline: "",
-      barbearia: "",
-      endereco: "",
-      horarios: "",
-      curso: ["Aulas", "Workshops", "Mentorias", "Materiais digitais"],
-      heroPhoto: "",
-      aboutPhoto: "",
-      fotos: ["", "", "", "", "", "", "", ""]
-    };
-
-    const bookingMessage = "Olá, Jadson! Gostaria de agendar um horário.";
-    const whatsappUrl = (message) =>
-      `https://wa.me/${CFG.whatsapp}?text=${encodeURIComponent(message)}`;
-
-    document.querySelectorAll('[data-whatsapp="booking"]').forEach((link) => {
-      link.href = whatsappUrl(bookingMessage);
-      link.target = "_blank";
-      link.rel = "noopener";
-    });
-
-    document.getElementById("course-list").innerHTML =
-      CFG.curso.map((item) => `<span>${item}</span>`).join("");
-
-    function setPhoto(element, url) {
-      if (!url) return;
-      const image = document.createElement("img");
-      image.src = url;
-      image.alt = "";
-      image.loading = "lazy";
-      image.style.cssText = "width:100%;height:100%;min-height:inherit;object-fit:cover;grid-area:1/1;";
-      element.style.display = "grid";
-      element.style.overflow = "hidden";
-      element.appendChild(image);
-      const label = element.querySelector("span");
-      if (label) label.remove();
-    }
-
-    setPhoto(document.querySelector('[data-photo="hero"]'), CFG.heroPhoto);
-    setPhoto(document.querySelector('[data-photo="about"]'), CFG.aboutPhoto);
-
-    const gallery = document.getElementById("gallery");
-    CFG.fotos.slice(0, 8).forEach((url, index) => {
-      const tile = document.createElement("div");
-      tile.className = "photo-placeholder";
-      tile.setAttribute("aria-label", `Espaço reservado para trabalho ${index + 1}`);
-
-      if (url) {
-        const image = document.createElement("img");
-        image.src = url;
-        image.alt = `Trabalho de barbearia ${index + 1}`;
-        image.loading = "lazy";
-        image.style.cssText = "width:100%;height:100%;object-fit:cover;grid-area:1/1;";
-        tile.appendChild(image);
-      } else {
-        const label = document.createElement("span");
-        label.textContent = `Foto de trabalho ${String(index + 1).padStart(2, "0")}`;
-        tile.appendChild(label);
-      }
-      gallery.appendChild(tile);
-    });
-
-    document.getElementById("barbershop").textContent =
-      CFG.barbearia || "Nome da barbearia: a atualizar";
-    document.getElementById("address").textContent =
-      CFG.endereco || "Endereço: a atualizar";
-    document.getElementById("hours").textContent =
-      CFG.horarios || "Horários: a atualizar";
-
-    if (CFG.agendaOnline) {
-      const agendaLink = document.getElementById("agenda-link");
-      agendaLink.href = CFG.agendaOnline;
-      agendaLink.hidden = false;
-    }
-
-    document.getElementById("instagram-link").href = CFG.instagram;
-
-    document.getElementById("interest-form").addEventListener("submit", (event) => {
-      event.preventDefault();
-      const form = new FormData(event.currentTarget);
-      const name = form.get("name").trim();
-      const phone = form.get("phone").trim();
-      const stage = form.get("stage");
-
-      const message =
-        `Olá, Jadson! Tenho interesse em acompanhar os próximos lançamentos do curso.\n\n` +
-        `Nome: ${name}\nWhatsApp: ${phone}\nFase da carreira: ${stage}`;
-
-      window.open(whatsappUrl(message), "_blank", "noopener");
-    });
-  </script>
-</body>
-</html>
+# Jadson Evangelista | Barber Educator
+## Documentação da landing page
+
+Documento de referência do projeto: posicionamento, identidade visual, estrutura, textos, como editar e o que ainda falta.
+
+---
+
+## 1. Visão geral
+
+**O que é:** landing page pessoal e link principal do Instagram.
+**Posicionamento:** barbeiro que ensina o que vive na prática da profissão.
+**Objetivos atuais (versão objetiva):**
+1. Destacar o curso em pré-lançamento e capturar interessados.
+2. Facilitar o agendamento de horário pelo WhatsApp.
+3. Apresentar Jadson como barbeiro, com trajetória e trabalhos reais.
+
+**Princípios de comunicação**
+- Autoridade sem arrogância.
+- Experiência sem ostentação.
+- Conhecimento sem complicação.
+- Evolução sem promessas milagrosas.
+- Nada de números, títulos, cursos ou avaliações inventados.
+
+---
+
+## 2. Identidade visual
+
+| Elemento | Definição |
+|---|---|
+| Preto profundo | `#050505` (fundo) |
+| Grafite | `#121212`, `#1c1c1c` (blocos e campos) |
+| Linhas | `#2a2927` |
+| Champagne envelhecido | `#c2a878` (detalhes e botões), `#8f7a52` (contornos) |
+| Texto | `#ece8e1`, secundário `#9b958b` |
+| Tipografia de títulos | Cormorant Garamond (serifada, editorial) |
+| Tipografia de texto | Manrope (sans, limpa) |
+
+**Direção:** minimalista, masculina, premium, com espaçamento generoso e contraste alto. O dourado aparece só em detalhes pequenos (botões principais, tag de pré-lançamento, contornos).
+
+**Animação:** apenas uma entrada suave na primeira dobra. Scroll suave. Respeita a configuração de movimento reduzido do aparelho.
+
+---
+
+## 3. Estrutura da página
+
+### 3.1 Primeira dobra (hero)
+- Identificação: JADSON EVANGELISTA · BARBER EDUCATOR
+- **Headline:** "O que a cadeira me ensina, eu compartilho."
+- **Subheadline:** "Barbeiro na rotina, educador na prática. Agende seu horário ou acompanhe o curso que estou construindo."
+- **CTA principal:** QUERO O CURSO (rola até a seção do curso)
+- **CTA secundário:** AGENDAR NO WHATSAPP
+- Foto de destaque (provisória, a trocar).
+
+### 3.2 Curso em pré-lançamento
+- Tag: PRÉ-LANÇAMENTO
+- **Título:** "Conhecimento que transforma prática em evolução."
+- **Texto:** "Estou desenvolvendo conteúdos e experiências educacionais para barbeiros que desejam evoluir profissionalmente. Cadastre seu interesse e seja avisado primeiro."
+- Linha "Em construção" com as frentes planejadas (aulas, workshops, mentorias, materiais digitais).
+- **Formulário:** nome, WhatsApp e fase da carreira (começando, já atendo clientes, trabalho em barbearia, tenho minha barbearia).
+- **Botão:** QUERO ACOMPANHAR OS PRÓXIMOS LANÇAMENTOS
+- **Funcionamento:** ao enviar, o WhatsApp abre com uma mensagem pronta contendo os dados da pessoa. Não depende de ferramenta externa.
+
+### 3.3 Quem está por trás do curso
+- Foto de Jadson trabalhando (provisória).
+- Texto curto sobre a trajetória: começou conciliando outra profissão com a barbearia, primeiros clientes em casa, investimento em formação, entrada em barbearia profissional, aprendizado diário.
+- Três marcas: Formação, Prática diária, Clientes reais.
+
+### 3.4 Trabalhos
+- Galeria de 8 imagens verticais (cortes, acabamentos, antes e depois, evoluções).
+
+### 3.5 Agendamento
+- Texto: "Atendimento com hora marcada. Chame no WhatsApp e escolha o melhor dia."
+- Nome da barbearia, endereço e horários (a preencher).
+- Botões: AGENDAR NO WHATSAPP, VER AGENDA ONLINE (só aparece se houver link) e INSTAGRAM.
+
+### 3.6 Elementos fixos
+- Cabeçalho com botão AGENDAR HORÁRIO.
+- No celular, barra fixa inferior com AGENDAR e QUERO O CURSO.
+
+---
+
+## 4. Como editar
+
+Tudo que muda no dia a dia fica no bloco `CFG`, no início do script do arquivo HTML.
+
+```js
+const CFG={
+ whatsapp:"5517900000000",        // DDI + DDD + número, só dígitos
+ instagram:"https://instagram.com/SEU_USUARIO",
+ agendaOnline:"",                 // link de agenda online; vazio = botão some
+ barbearia:"Nome da barbearia",
+ endereco:"Endereço completo, cidade",
+ horarios:"Terça a sábado, 9h às 19h",
+ curso:["Aulas","Workshops","Mentorias","Materiais digitais"],
+ fotos:[]                         // URLs das fotos de trabalhos (até 8)
+};
+```
+
+**Para trocar as fotos:** substitua os espaços provisórios por imagens reais. A foto da primeira dobra e a da seção "Quem está por trás do curso" ficam no HTML. As da galeria entram pela lista `fotos`.
+
+**Para lançar um curso:** troque a tag PRÉ-LANÇAMENTO por uma descrição real (nome, formato, o que o aluno recebe, valor, link de compra) e use o formulário como lista de espera ou remova-o.
+
+---
+
+## 5. Checklist de materiais
+
+**Fotos**
+- [ ] Retrato profissional (vertical, boa luz, fundo limpo)
+- [ ] Foto trabalhando na cadeira
+- [ ] 8 fotos de trabalhos (cortes e acabamentos)
+
+**Dados**
+- [ ] Número de WhatsApp para agendamento
+- [ ] @ do Instagram
+- [ ] Nome da barbearia, endereço e horários
+- [ ] Link de agenda online, se usar um app
+- [ ] Revisão do texto da trajetória com a sua história real
+
+**Conteúdo do curso (quando definido)**
+- [ ] Nome e formato
+- [ ] Público-alvo
+- [ ] O que o aluno aprende
+- [ ] Data prevista e valor
+
+---
+
+## 6. Publicação e SEO
+
+- **Título da página:** Jadson Evangelista | Barber Educator
+- **Descrição:** "Jadson Evangelista, barbeiro e educador. Agende seu horário ou acompanhe o lançamento do curso."
+- Mobile-first, responsiva e sem dependências pesadas (um único arquivo HTML).
+- Para domínio próprio, hospede o arquivo em qualquer serviço de páginas estáticas e aponte o domínio.
+- Depois de publicar, coloque o link na bio do Instagram.
+
+---
+
+## 7. Evolução planejada
+
+A estrutura foi pensada para crescer sem refazer a página:
+- Volta da **biblioteca de conteúdos** por categoria (técnica, fundamentos, processo, acabamento, rotina, carreira, gestão de tempo, experiência do cliente), com links para os Reels.
+- Seção de **feedbacks reais** (clientes agora, alunos depois), sempre com autorização.
+- Páginas ou blocos para **workshops, mentorias e materiais digitais**.
+- Captura de leads integrada a uma ferramenta de e-mail ou CRM, se o volume crescer.
+
+---
+
+## 8. Pontos de atenção
+
+- Todas as imagens atuais são provisórias.
+- Não publicar depoimentos, números ou resultados que não possam ser comprovados.
+- Pedir autorização antes de usar fotos de clientes.
+- Testar o formulário e os botões de WhatsApp com o número real antes de divulgar.
