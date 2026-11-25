@@ -46,7 +46,7 @@ Documento de referência do projeto: posicionamento, identidade visual, estrutur
 ### 3.1 Primeira dobra (hero)
 - Identificação: JADSON EVANGELISTA · BARBER EDUCATOR
 - **Headline:** "O que a cadeira me ensina, eu compartilho."
-- **Subheadline:** "Barbeiro na rotina, educador na prática. Agende seu horário ou acompanhe o curso que estou construindo."
+- **Subheadline:** "Barbeiro na rotina, educador na prática. Agende seu horário ou conheça meu curso."
 - **CTA principal:** QUERO O CURSO (rola até a seção do curso)
 - **CTA secundário:** AGENDAR NO WHATSAPP
 - Foto de destaque (provisória, a trocar).
